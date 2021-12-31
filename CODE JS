@@ -1,0 +1,42 @@
+const Discord = require("discord.js");
+const Client = new Discord.Client({
+    intents: [
+        Discord.Intents.FLAGS.GUILDS,
+        Discord.Intents.FLAGS.GUILD_MESSAGES,
+        Discord.Intents.FLAGS.DIRECT_MESSAGES,
+        Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS
+    ]
+});
+
+const prefix = "!";
+
+
+Client.on("ready", () => {
+console.log("bot operationnel")
+});
+
+Client.login("token")
+
+Client.on("messageCreate", message => {
+    if (message.author.bot) return;
+
+    //!ping
+    if(message.content === prefix + "ping"){
+        message.reply("Hello welcome to the server !");
+    }
+    else if(message.content === prefix + "help"){
+        message.channel.send("**__Liste des commandes du Bot__**\n - !ping : Hello welcome to the server !\n - !help: liste des commandes du bot\n - !play:The song you chose is now running");
+    }
+    });
+    
+
+    Client.on("messageCreate", message => {
+        if (message.author.bot) return;
+        //!play
+        if(message.content === prefix + "play"){
+            message.reply("The song you chose is now running !");
+        }
+        else if(message.content === prefix + "play"){
+        message.channel.send("The song is now playing !");
+        }
+    });
